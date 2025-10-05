@@ -1,0 +1,36 @@
+preRelease: pre-release {
+  shape: sequence_diagram
+
+  user
+  gameDir: game-dir
+  phCount: ph-count
+  phRegister: ph-register
+
+  user -> phRegister.1: "register game"
+  phRegister.1 -> server.1: register game,\nadd DB game row
+  server.1 -> server.1: ID created
+
+  user.1 -> gameDir: rsync
+  user.1 -> server.2: derive ID
+  server.2 -> gameDir: save ID
+  user.1 -> phCount.1 -> server: store total
+
+  user.2 -> gameDir: first triage
+  user.2 -> phCount.2 -> server: store first triage count
+
+  user.3 -> gameDir: final triage
+  user.3 -> phCount.3 -> server: store final count
+}
+
+release: {
+  shape: sequence_diagram
+
+  user -> ph.1 -> server.1: release
+  server.1 -> ph.1: release
+  server.1 -> ph.1: seq
+  server.1 -> ph.2: md5,\ngameinfo,\ngamesearch,\ndigexif,\nenc dir,\nbackup
+
+  user -> ph.4 -> server.2: rank
+  server.2 -> ph.4: create ig context
+  server.2 -> ph.4: copy to ig
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd         http://www.liquibase.org/xml/ns/dbchangelog-ext         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd         http://www.liquibase.org/xml/ns/pro         http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+    <changeSet author="phocess" id="2025-09-28-2019">
+        <createTable tableName="t_game">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="c_name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="c_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="c_count_total" type="bigint"/>
+            <column name="c_count_first" type="bigint"/>
+            <column name="c_count" type="bigint"/>
+        </createTable>
+        <addUniqueConstraint tableName="t_game" columnNames="c_name,c_date" constraintName="uq_game_name+date"/>
+    </changeSet>
+</databaseChangeLog>

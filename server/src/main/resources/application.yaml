@@ -1,0 +1,14 @@
+---
+spring:
+    application:
+        name: phocess
+    datasource:
+        hikari:
+            maximum-pool-size: 4
+        username: denarced
+        password: protekto
+        url: jdbc:postgresql://localhost/phocess
+    liquibase:
+        change-log: classpath:/changelog.xml
+    activemq:
+        broker-url: tcp://localhost:61616

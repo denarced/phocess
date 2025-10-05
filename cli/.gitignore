@@ -1,0 +1,6 @@
+*\.sw[a-p]
+*\.log
+*\.log\.gz
+
+cover\.html
+cover\.out
